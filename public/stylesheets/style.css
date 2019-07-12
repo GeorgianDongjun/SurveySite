@@ -1,8 +1,35 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#myFooter {
+  background-color: #3c3d41;
+  color: white;
+  padding-top: 30px;
 }
 
-a {
-  color: #00B7FF;
+#myFooter .footer-copyright {
+  background-color: #333333;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#myFooter .btn {
+  color: white;
+  background-color: #d84b6b;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  line-height: 25px;
+}
+
+@media screen and (max-width: 767px) {
+  #myFooter {
+      text-align: center;
+  }
 }
