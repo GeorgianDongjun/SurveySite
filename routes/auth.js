@@ -19,6 +19,7 @@ router.post(
 router.get('/register', (req, res) =>
   res.render('login', { buttonText: 'Register' })
 );
+
 // Handle Register Form Submission
 router.post('/register', (req, res) => {
   User.register(
