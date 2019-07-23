@@ -1,3 +1,4 @@
+
 // author Yang Su
 const Survey=require('../../models/surveys');
 // Find all surveys
@@ -21,3 +22,22 @@ exports.getSurveyById = routePath => async (req, res, next) => {
  console.log(survey);
  res.render('users/doSurvey', { survey });
 };
+
+
+// Projects CRUD
+// Creating
+// Create a new Project
+exports.createNewSurvey = async (req, res) => {
+
+  const body = req.body;
+  console.log(body)
+  let questions = []
+  for (var i = 0; i < req.body.question_title.length; i++) {
+    questions.push({title: req.body.question_title[i], type: req.body.question_type[i]});
+  }
+  body.survey_questions=questions
+  const project = await new Survey(body).save();
+  res.redirect(`/projects/${project._id}`);
+};
+
+
