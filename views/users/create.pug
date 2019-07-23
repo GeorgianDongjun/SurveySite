@@ -9,19 +9,19 @@ block content
             div
                 table(border='0')
                     tbody
-                        tr
+                        tr.form-group
                             td
                                 input(name="survey_title" placeholder="title of survey")
-                        tr
+                        tr.form-group
                             td  Question: 
                             td
                                 input(type='text', name='question_title')
-                        tr
+                        tr.form-group
                             td  Question Type: 
                             td
-                                select.form-control.type(name="question_type", onchange='changeFunc();')
-                                    option(value='multiple', selected='') Multiple Choice
-                                    option(value='agree') Agree/Disagree
+                                select.form-control.type(name="question_type")
+                                    //- option(value='multiple', selected='') Multiple Choice
+                                    option(value='agree', selected='') Agree/Disagree
                                     option(value='short') Short Answer
                         //- tr#newChoice
                         //-     td
@@ -47,8 +47,8 @@ block content
                         td  Question Type: 
                         td
                             select.form-control.type(name="question_type", onchange='changeFunc();')
-                                option(value='multiple', selected='') Multiple Choice
-                                option(value='agree') Agree/Disagree
+                                //- option(value='multiple', selected='') Multiple Choice
+                                option(value='agree', selected='') Agree/Disagree
                                 option(value='short') Short Answer
 
 
@@ -96,16 +96,7 @@ block content
         //- tr1.innerHTML = document.getElementById('newlinktpl').innerHTML + delLink;
         //- document.getElementById('newlink').appendChild(tr1);
         //- }
-        function create_UUID()
-        {
-        var dt = new Date().getTime();
-        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = (dt + Math.random()*16)%16 | 0;
-            dt = Math.floor(dt/16);
-            return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-        });
-        return uuid;
-        }
+
         // function to delete the newly added set of elements
         function delIt(eleId)
         {
@@ -116,18 +107,18 @@ block content
         }
 
 
-    script.
-        window.onload = changeFunc;
+    //- script.
+    //-     window.onload = changeFunc;
 
-        function changeFunc() {
-            let types = document.querySelectorAll('.type')
-            types.filter(type => type[types.selectedIndex].value === 'multiple')
-            var propertyType = document.getElementById('exampleFormControlSelect1');
-            if (propertyType[propertyType.selectedIndex].value == 'multiple') {
-                let question = document.querySelector('#question1')
-                question.innerHTML = `<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>
-                <div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>`
-            }
+    //-     function changeFunc() {
+    //-         let types = document.querySelectorAll('.type')
+    //-         types.filter(type => type[types.selectedIndex].value === 'multiple')
+    //-         var propertyType = document.getElementById('exampleFormControlSelect1');
+    //-         if (propertyType[propertyType.selectedIndex].value == 'multiple') {
+    //-             let question = document.querySelector('#question1')
+    //-             question.innerHTML = `<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>
+    //-             <div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>`
+    //-         }
 
  
 
