@@ -1,4 +1,28 @@
-const Survey = require('../../models/survey');
+
+// author Yang Su
+const Survey=require('../../models/surveys');
+// Find all surveys
+exports.findAllSurveys = async (req, res) => {
+
+    const surveys = await Survey.find();
+    res.render('users/surveys', {surveys});
+    console.log(surveys);
+  };
+ /* // get one survey (GET by it's ID)
+exports.getSurveyById = routePath => async (req, res, next) => {
+  const id = req.params.id;
+  const survey = await Survey.findById(id);
+  console.log(survey);
+  res.render(routePath, {survey}); 
+};  */
+ exports.findSurveyById = async (req, res) => {
+
+ const id = req.params.id;
+ const survey = await Survey.findById(id);
+ console.log(survey);
+ res.render('users/doSurvey', { survey });
+};
+
 
 // Projects CRUD
 // Creating
@@ -16,50 +40,4 @@ exports.createNewSurvey = async (req, res) => {
   res.redirect(`/users/${survey._id}`);
 };
 
-// Reading
-// Find a Project by it's ID
-// /projects/:id
-// exports.findProjectById = function(viewPath) {
-//   return function(req, res) {
-//     const id = req.params.id;
-//     const project = await Project.findById(id);
-//     res.render(viewPath, { project });
-//   }
-// }
-exports.findProjectById = viewPath => async (req, res) => {
-  const id = req.params.id;
-  const project = await Project.findById(id);
-  res.render(viewPath, { project });
-};
-// Old findProjectById
-// exports.findProjectById = async (req, res) => {
-//   const id = req.params.id;
-//   const project = await Project.findById(id);
-//   res.render('projects/details', { project });
-// };
 
-// Find all Projects
-exports.findAllProjects = async (req, res) => {
-  const projects = await Project.find();
-  res.render('projects/list', { projects });
-};
-
-// Updating
-// Update a project based on it's ID
-exports.updateProjectById = async (req, res) => {
-  const body = req.body;
-  const id = req.params.id;
-  const project = await Project.findByIdAndUpdate(id, body, {
-    new: true,
-    runValidators: true
-  });
-  res.redirect(`/projects/${project._id}`);
-};
-
-// Deleting
-// Delete a porject based on it's ID
-exports.deleteProjectById = async (req, res) => {
-  const id = req.params.id;
-  await Project.findByIdAndDelete(id);
-  res.redirect('/projects');
-};
