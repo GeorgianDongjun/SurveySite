@@ -1,9 +1,13 @@
 var express = require('express');
+var surveys = require('./controllers/surveys');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/new-survey', function(req, res, next) {
-  res.render('users/new-survey')
+router.get('/create', function(req, res, next) {
+  res.render('users/create')
 });
+
+
+router.post('/create', surveys.createNewSurvey);
 
 module.exports = router;
