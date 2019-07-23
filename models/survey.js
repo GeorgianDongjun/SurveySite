@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const questionSchema = new Schema({
   title: String,
   type: String,
-  options: String
+  answer:[String]
 });
 
 const surveySchema = new Schema({

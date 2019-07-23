@@ -7,27 +7,17 @@ block content
     form(method='post', action='')
         #newlink
             div
-                table(border='0')
-                    tbody
-                        tr.form-group
-                            td
-                                input(name="survey_title" placeholder="title of survey")
-                        tr.form-group
-                            td  Question: 
-                            td
-                                input(type='text', name='question_title')
-                        tr.form-group
-                            td  Question Type: 
-                            td
-                                select.form-control.type(name="question_type")
-                                    //- option(value='multiple', selected='') Multiple Choice
-                                    option(value='agree', selected='') Agree/Disagree
-                                    option(value='short') Short Answer
-                        //- tr#newChoice
-                        //-     td
-                        //-         input(name="survey_title" placeholder="title of survey")
-                        //-     a(href='javascript:new_choice()') Add New Choice
-
+                .form-group
+                    label Survey Title
+                    input.form-control(name="survey_title" placeholder="Title of survey")
+                .form-group
+                    label Question Title
+                    input.form-control(type='text', name='question_title')
+                .form-group
+                    label  Question Type
+                        select.form-control.type(name="question_type")
+                            option(value='agree', selected='') Agree/Disagree
+                            option(value='short') Short Answer
         p#addnew
             a(href='javascript:new_link()') Add New
         p
@@ -37,19 +27,14 @@ block content
     // Template
     #newlinktpl(style='display:none')
         div
-            table(border='0')                    
-                tbody
-                    tr                            
-                        td  Question: 
-                        td
-                            input(type='text', name='question_title')
-                    tr
-                        td  Question Type: 
-                        td
-                            select.form-control.type(name="question_type", onchange='changeFunc();')
-                                //- option(value='multiple', selected='') Multiple Choice
-                                option(value='agree', selected='') Agree/Disagree
-                                option(value='short') Short Answer
+            .form-group
+                label Question Title
+                input.form-control(type='text', name='question_title')
+            .form-group
+                label  Question Type
+                    select.form-control.type(name="question_type")
+                        option(value='agree', selected='') Agree/Disagree
+                        option(value='short') Short Answer
 
 
     //- form(method="POST")
