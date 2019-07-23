@@ -12,8 +12,8 @@ exports.createNewSurvey = async (req, res) => {
     questions.push({title: req.body.question_title[i], type: req.body.question_type[i]});
   }
   body.survey_questions=questions
-  const project = await new Survey(body).save();
-  res.redirect(`/projects/${project._id}`);
+  const survey = await new Survey(body).save();
+  res.redirect(`/users/${survey._id}`);
 };
 
 // Reading

@@ -67,7 +67,7 @@ block content
         var div1 = document.createElement('div');
         div1.id = ct;
         // link to delete extended form elements
-        var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
+        var delLink = '<a href="javascript:delIt('+ ct +')"><button type="button" class="btn btn-danger ">Del</button></a>';
         div1.innerHTML = document.getElementById('newlinktpl').innerHTML + delLink;
         document.getElementById('newlink').appendChild(div1);
         }
