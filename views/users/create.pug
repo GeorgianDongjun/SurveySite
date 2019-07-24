@@ -1,3 +1,6 @@
+//- Author Tomoya
+
+
 extends ../layout
 
 block content
@@ -6,27 +9,28 @@ block content
 
     form(method='post', action='')
         #newlink
-            div
+            div.container
                 .form-group
                     label Survey Title
-                    input.form-control(name="survey_title" placeholder="Title of survey")
+                    input.form-control(name="survey_title" placeholder="Title of survey", required='')
                 .form-group
                     label Question Title
-                    input.form-control(type='text', name='question_title')
+                    input.form-control(type='text', name='question_title', required='')
                 .form-group
                     label  Question Type
                         select.form-control.type(name="question_type")
                             option(value='agree', selected='') Agree/Disagree
                             option(value='short') Short Answer
-        p#addnew
-            a(href='javascript:new_link()') Add New
-        p
+        br
+        p#addnew.container(style='margin-top:16px')
+            a(href='javascript:new_link()', class="btn btn-secondary", role="button") Add New
+        p.container
             br
-            input(type='submit', name='submit1')
-            input(type='reset', name='reset1')
+            input(type='submit', name='submit1', class="btn btn-primary", style="margin-right:18px")
+            input(type='reset', name='reset1', class="btn btn-warning")
     // Template
     #newlinktpl(style='display:none')
-        div
+        div(style="margin-top:16px")
             .form-group
                 label Question Title
                 input.form-control(type='text', name='question_title')
@@ -36,51 +40,22 @@ block content
                         option(value='agree', selected='') Agree/Disagree
                         option(value='short') Short Answer
 
-
-    //- form(method="POST")
-    //-     .form-group
-    //-     label(for='exampleInputEmail1') Survey Name
-    //-     input#inputSurveyName.form-control(type='text', aria-describedby='emailHelp', placeholder='Survey name')
-
-    //-     .form-group
-    //-     label(for='exampleFormControlSelect1') Type
-    //-     select#exampleFormControlSelect1.form-control(onchange='changeFunc();')
-    //-         option(value='multiple', selected='') Multiple Choice
-    //-         option(value='agree') Agree/Disagree
-    //-         option(value='short') Short Answer
-        
-    //-     #question1
-
-    //-     //- input(name="title" placeholder="title of project")
-    //-     //- input(name="grade" type="number")
-    //-     //- input(name="class.title" placeholder="Class Title")
-    //-     //- input(name="class.courseCode" placeholder="CourseCode")
-    //-     //- input(name="class.teacher" placeholder="Teacher")
-
-    //-     button.btn.btn-primary(type='submit') Create Survey
-
+    //- Script Reference
+    //- http://www.satya-weblog.com/2010/02/add-input-fields-dynamically-to-form-using-javascript.html
     script.
         var ct = 1;
         function new_link()
         {
         ct++;
         var div1 = document.createElement('div');
+        div1.classList.add("container");
         div1.id = ct;
         // link to delete extended form elements
-        var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
+        var delLink = '<a href="javascript:delIt('+ ct +')" ><button type="button" class="btn btn-danger ">Delete</button></a>';
         div1.innerHTML = document.getElementById('newlinktpl').innerHTML + delLink;
         document.getElementById('newlink').appendChild(div1);
         }
-        //- function new_choice()
-        //- {
-        //- var tr1 = document.createElement('tr');
-        //- let uuid = create_UUID()
-        //- tr1.id = uuid;
-        //- // link to delete extended form elements
-        //- var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ uuid +')">Del</a></div>';
-        //- tr1.innerHTML = document.getElementById('newlinktpl').innerHTML + delLink;
-        //- document.getElementById('newlink').appendChild(tr1);
-        //- }
+
 
         // function to delete the newly added set of elements
         function delIt(eleId)
@@ -90,21 +65,3 @@ block content
         var parentEle = d.getElementById('newlink');
         parentEle.removeChild(ele);
         }
-
-
-    //- script.
-    //-     window.onload = changeFunc;
-
-    //-     function changeFunc() {
-    //-         let types = document.querySelectorAll('.type')
-    //-         types.filter(type => type[types.selectedIndex].value === 'multiple')
-    //-         var propertyType = document.getElementById('exampleFormControlSelect1');
-    //-         if (propertyType[propertyType.selectedIndex].value == 'multiple') {
-    //-             let question = document.querySelector('#question1')
-    //-             question.innerHTML = `<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>
-    //-             <div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>`
-    //-         }
-
- 
-
-
