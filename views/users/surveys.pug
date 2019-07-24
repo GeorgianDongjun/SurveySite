@@ -1,6 +1,8 @@
 extends ../layout
 
 block content
+    if isAuthenticated
+      a(href=`/users/${username}/create`) Create New Survey
     h3.text-center All surveys
     ul
       each survey in surveys

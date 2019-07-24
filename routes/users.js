@@ -2,18 +2,22 @@ var express = require('express');
 var surveys = require('./controllers/surveys');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/create', function(req, res, next) {
-  res.render('users/create')
-});
+
 
 // get users surveys and other suryes
 router.get('/surveys', function(req, res, next) {
-  res.render('users/surveys')
+  res.render('users/surveys',  { username: req.user.username })
 });
 
 
-router.post('/create', surveys.createNewSurvey);
+router.post('/:username/create', surveys.createNewSurvey);
 
+/* GET new survey page */
+router.get('/:username/create', function(req, res, next) {
+  res.render('users/create')
+});
+
+
+router.get('/:username/surveys', surveys.findAllSurveys);
 
 module.exports = router;
