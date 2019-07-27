@@ -40,4 +40,13 @@ exports.createNewSurvey = async (req, res) => {
   res.redirect(`/projects/${project._id}`);
 };
 
+// post the answers of a survey
+exports.postAnswer = async (req, res)=>{
+  const id = req.params.id;
+  const body=req.body;
+  console.log(id);
+  console.log(body);
+
+};
+
 

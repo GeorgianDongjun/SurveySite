@@ -15,5 +15,5 @@ router.get('/surveys', function(req, res, next) {
 
 router.post('/create', surveys.createNewSurvey);
 
-
+router.post('/doSurvey/:id', surveys.postAnswer);
 module.exports = router;
