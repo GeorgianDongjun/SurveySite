@@ -12,8 +12,11 @@ router.post(
     '/login',
     passport.authenticate('local', {
       failureRedirect: '/login',
-      successRedirect: '/'
-    })
+    }),
+    function(req, res) {
+      res.redirect(`/users/${req.user.username}/surveys`);
+   }
+    
 );
 // Render Register Form
 router.get('/register', (req, res) =>
@@ -32,7 +35,7 @@ router.post('/register', (req, res) => {
       }
 
       passport.authenticate('local')(req, res, function() {
-        res.redirect('/');
+        res.redirect(`/users/${req.user.username}/surveys`);
       });
     }
   );

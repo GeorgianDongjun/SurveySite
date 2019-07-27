@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const questionSchema = new Schema({
   title: String,
-  type: String,
+  question_type: String,
   answer:[String]
 });
 
@@ -13,7 +13,7 @@ const surveySchema = new Schema({
     required: true
   },
   survey_questions: [questionSchema],
-  user_name: String
+  username: String
 });
   const Survey=mongoose.model('Survey',surveySchema);
   module.exports=Survey;
