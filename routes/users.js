@@ -4,10 +4,8 @@ var router = express.Router();
 
 
 
-// get  surveys for registered account
-router.get('/:username/surveys', function(req, res, next) {
-  res.render('users/surveys',  surveys.findAllSurveys)
-});
+// Get surveys for registered account
+router.get('/:username/surveys', surveys.findAllSurveys); 
 
 
 router.post('/:username/create', surveys.createNewSurvey);

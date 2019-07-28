@@ -8,13 +8,9 @@ exports.findAllSurveys = async (req, res) => {
     res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
     console.log(surveys);
   };
- /* // get one survey (GET by it's ID)
-exports.getSurveyById = routePath => async (req, res, next) => {
-  const id = req.params.id;
-  const survey = await Survey.findById(id);
-  console.log(survey);
-  res.render(routePath, {survey}); 
-};  */
+ 
+// get one survey (GET by it's ID)
+
  exports.findSurveyById = async (req, res) => {
 
  const id = req.params.id;
@@ -56,24 +52,43 @@ exports.postAnswer = async (req, res) => {
   const body=req.body;
   console.log(id);
   console.log(body);
- try{
-  
+  const survey = await Survey.findById(id)
+
+  if(Array.isArray(req.body.answer)){
+
+  for (var i = 0; i < req.body.answer.length; i++) {
+
+    survey.survey_questions[i].answer.push(body.answer[i])
+
+  }
+
+  }else{
+    survey.survey_questions[0].answer.push(body.answer)
+
+  }
+    await survey.save()
+
+  res.redirect(`/surveys`); 
+ /* try{
+  const id = req.params.id;
+  const body=req.body;
+  console.log(id);
+  console.log(body);
   const survey = await Survey.findByIdAndUpdate(id, {
+    
     $push: {
-      survey_questions: {
-           
-          answers: ["aa"]
-      
-      }
+     survey_questions:{
+       answers: "a"
+      }   
     }
- },{ new: true,},(err,survey)=>{
+ },{ new: true, useFindAndModify: false},(err,survey)=>{
   if (err) return res.status(500).send(err);
   return res.send(survey);
  });
 }catch(e){
   res.json(e);
 
-  }
+  } */
 };
 
 
