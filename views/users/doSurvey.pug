@@ -7,7 +7,7 @@ block content
         each question in survey.survey_questions 
             label #{question.title}
             if question.question_type=="short"
-                textarea.form-control(type="text" name="answer" placeholder="your answer")
+                textarea.form-control(type="text" name="answer" placeholder="your answer", required="")
             else if question.question_type=="agree"
                 select.form-control.type(name="answer")
                     option(value='agree', selected='') Agree
