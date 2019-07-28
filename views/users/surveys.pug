@@ -9,4 +9,4 @@ block content
         li 
         a(href=`/doSurvey/${survey._id}`)=survey.survey_title
         if survey.username==username
-          a(href=`/users/${username}/statistic` class="btn btn-primary") View Statistic
+          a(href=`/users/${survey._id}/statistic` class="btn btn-primary") View Statistic

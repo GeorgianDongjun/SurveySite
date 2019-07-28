@@ -16,15 +16,13 @@ router.get('/:username/create', function(req, res, next) {
 });
 
 //get statistic page 
-router.get('/:username/statistic', function(req,res, next){ 
-  res.render('users/statistic', username, req.user)
-});
+router.get('/:id/statistic', surveys.statistic);
 
 
 
 
 
-router.get('/:username/surveys', surveys.findAllSurveys);
+//router.get('/:username/surveys', surveys.findAllSurveys);
 
 
 module.exports = router;

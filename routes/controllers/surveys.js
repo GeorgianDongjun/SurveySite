@@ -93,4 +93,27 @@ exports.postAnswer = async (req, res) => {
   } */
 };
 
+// author Yang
+//view statistic function 
+exports.statistic=async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  //console.log(req.body);
+  const survey = await Survey.findById(id);
+  let agreeNumber=0;
+  let disagreeNumber=0;
+  for (const answer of survey.survey_questions[0].answer){
+    if (answer==="agree")
+    agreeNumber++
+    else
+    disagreeNumber++
+  }
+  console.log(agreeNumber);
+  console.log(disagreeNumber);
+  console.log(survey.survey_questions[0].answer);
+  const respondents = survey.survey_questions[0].answer.length
+  
+res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber });
+};
+
 
