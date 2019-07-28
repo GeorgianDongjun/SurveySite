@@ -4,9 +4,9 @@ var router = express.Router();
 
 
 
-// get users surveys and other suryes
-router.get('/surveys', function(req, res, next) {
-  res.render('users/surveys',  { username: req.user.username })
+// get  surveys for registered account
+router.get('/:username/surveys', function(req, res, next) {
+  res.render('users/surveys',  surveys.findAllSurveys)
 });
 
 
