@@ -5,7 +5,7 @@ const Survey=require('../../models/surveys');
 exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
-    res.render('users/surveys', {surveys, username: req.user.username});
+    res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
     console.log(surveys);
   };
  /* // get one survey (GET by it's ID)
@@ -47,6 +47,33 @@ exports.createNewSurvey = async (req, res) => {
   body.username=req.params.username
   const survey = await new Survey(body).save();
   res.redirect(`/users/doSurvey/${survey._id}`);
+};
+
+//author Yang
+// post the answers of a survey
+exports.postAnswer = async (req, res) => {
+  const id = req.params.id;
+  const body=req.body;
+  console.log(id);
+  console.log(body);
+ try{
+  
+  const survey = await Survey.findByIdAndUpdate(id, {
+    $push: {
+      survey_questions: {
+           
+          answers: ["aa"]
+      
+      }
+    }
+ },{ new: true,},(err,survey)=>{
+  if (err) return res.status(500).send(err);
+  return res.send(survey);
+ });
+}catch(e){
+  res.json(e);
+
+  }
 };
 
 
