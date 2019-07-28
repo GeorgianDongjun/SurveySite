@@ -7,6 +7,7 @@ exports.findAllSurveys = async (req, res) => {
     const surveys = await Survey.find();
     res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
     console.log(surveys);
+    console.log(req.user);
   };
  
 // get one survey (GET by it's ID)
@@ -52,12 +53,13 @@ exports.postAnswer = async (req, res) => {
   const body=req.body;
   console.log(id);
   console.log(body);
+  
   const survey = await Survey.findById(id)
 
   if(Array.isArray(req.body.answer)){
 
   for (var i = 0; i < req.body.answer.length; i++) {
-
+    
     survey.survey_questions[i].answer.push(body.answer[i])
 
   }

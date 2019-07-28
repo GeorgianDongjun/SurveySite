@@ -15,6 +15,11 @@ router.get('/:username/create', function(req, res, next) {
   res.render('users/create')
 });
 
+//get statistic page 
+router.get('/:username/statistic', function(req,res, next){ 
+  res.render('users/statistic', username, req.user)
+});
+
 
 
 
