@@ -35,7 +35,7 @@ router.post('/register', (req, res) => {
       }
 
       passport.authenticate('local')(req, res, function() {
-        res.redirect(`/users/${req.user.username}/surveys`);
+        res.redirect(`/surveys`);
       });
     }
   );
