@@ -14,7 +14,7 @@ router.post(
       failureRedirect: '/login',
     }),
     function(req, res) {
-      res.redirect(`/users/${req.user.username}/surveys`);
+      res.redirect(`/surveys`);
    }
     
 );
