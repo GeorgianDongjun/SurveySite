@@ -49,31 +49,22 @@ exports.createNewSurvey = async (req, res) => {
   res.redirect(`/users/doSurvey/${survey._id}`);
 };
 
-//author Yang
+//author Yang and Tomoya
 // post the answers of a survey
 exports.postAnswer = async (req, res) => {
   const id = req.params.id;
   const body=req.body;
-  console.log(id);
-  console.log(body);
- try{
-  
-  const survey = await Survey.findByIdAndUpdate(id, {
-    $push: {
-      survey_questions: {
-           
-          answers: ["aa"]
-      
-      }
-    }
- },{ new: true,},(err,survey)=>{
-  if (err) return res.status(500).send(err);
-  return res.send(survey);
- });
-}catch(e){
-  res.json(e);
-
+ 
+  const survey = await Survey.findById(id)
+  if(Array.isArray(req.body.answer)){
+  for (var i = 0; i < req.body.answer.length; i++) {
+    survey.survey_questions[i].answer.push(body.answer[i])
   }
+  }else{
+    survey.survey_questions[0].answer.push(body.answer)
+  }
+    await survey.save()
+  res.redirect(`/surveys`);
 };
 
 
