@@ -8,7 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const User = require('./models/user');
-
+var Chart = require('chart.js')
 mongoose.connect(
   `mongodb+srv://user:user@cluster0-o0irn.mongodb.net/test?retryWrites=true&w=majority`,
   { useNewUrlParser: true }

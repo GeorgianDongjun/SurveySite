@@ -11,7 +11,27 @@ block content
                         br              
                         div Agree: #{agreeNumber}
                         div Disgree: #{disagreeNumber}
+                        canvas#myChart
                     else if question.question_type=="short"
                         each answer in question.answer
-                            div=answer+", "
+                            div=answer+", "  
+    
+    script(type='text/javascript').
+        var chrt = document.getElementById("myChart").getContext("2d");
+            var data = {
+            labels: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul"],
+            datasets: [{
+                label: "My First dataset",
+                backgroundColor: "rgba(220,220,220,0.8)",
+                borderColor: "rgba(220,220,220,0.8)",
+                hoverBackgroundColor: "rgba(220,220,220,0.75)",
+                hoverBorderColor: "rgba(220,220,220,1)",
+                data: [65, 59, 80, 81, 56, 55, 40]
+            }]
+            };
+           var myFirstChart = new Chart(chrt, {
+            type: 'bar',
+            data: data
+            });   
 
+        

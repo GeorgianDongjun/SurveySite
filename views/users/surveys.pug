@@ -1,12 +1,13 @@
 extends ../layout
 
 block content
+  .container
     if isAuthenticated
       a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
     h3.text-center All surveys
-    ul
+    div.card
       each survey in surveys
-        li 
-        a(href=`/doSurvey/${survey._id}`)=survey.survey_title
-        if survey.username==username
-          a(href=`/users/${survey._id}/statistic` class="btn btn-primary") View Statistic
+        div.card-body
+          a(href=`/doSurvey/${survey._id}` class="list-group-item")=survey.survey_title
+            if survey.username==username        
+              a(href=`/users/${survey._id}/statistic` class="btn btn-primary") View Statistic
