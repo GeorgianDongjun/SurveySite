@@ -5,7 +5,7 @@ const Survey=require('../../models/surveys');
 exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
-    res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
+    res.render('users/surveys', {surveys, username: req.user.username});
     console.log(surveys);
     console.log(req.user);
   };
@@ -46,7 +46,8 @@ exports.createNewSurvey = async (req, res) => {
   res.redirect(`/users/doSurvey/${survey._id}`);
 };
 
-//author Yang
+
+//Author Yang and Tomoya
 // post the answers of a survey
 exports.postAnswer = async (req, res) => {
   const id = req.params.id;
@@ -71,26 +72,7 @@ exports.postAnswer = async (req, res) => {
     await survey.save()
 
   res.redirect(`/surveys`); 
- /* try{
-  const id = req.params.id;
-  const body=req.body;
-  console.log(id);
-  console.log(body);
-  const survey = await Survey.findByIdAndUpdate(id, {
-    
-    $push: {
-     survey_questions:{
-       answers: "a"
-      }   
-    }
- },{ new: true, useFindAndModify: false},(err,survey)=>{
-  if (err) return res.status(500).send(err);
-  return res.send(survey);
- });
-}catch(e){
-  res.json(e);
-
-  } */
+ 
 };
 
 // author Yang
@@ -115,5 +97,6 @@ exports.statistic=async (req, res) => {
   
 res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber });
 };
+
 
 

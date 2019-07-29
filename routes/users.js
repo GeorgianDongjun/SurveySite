@@ -4,8 +4,10 @@ var router = express.Router();
 
 
 
+
 // Get surveys for registered account
 router.get('/:username/surveys', surveys.findAllSurveys); 
+
 
 
 router.post('/:username/create', surveys.createNewSurvey);
@@ -20,9 +22,6 @@ router.get('/:id/statistic', surveys.statistic);
 
 
 
-
-
-//router.get('/:username/surveys', surveys.findAllSurveys);
 
 
 module.exports = router;

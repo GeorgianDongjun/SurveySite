@@ -7,9 +7,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 // List all surveys(GET)
-router.get('/surveys', surveys.findAllSurveys);
+router.get('/users/surveys', surveys.findAllSurveys);
 
 // List a specific surveys (GET)
+
 router.get('/doSurvey/:id', surveys.findSurveyById);
 
 //post a survey's answer
@@ -17,3 +18,4 @@ router.post('/doSurvey/:id',surveys.postAnswer);
 
 
 module.exports = router;
+
