@@ -1,8 +1,18 @@
 extends ../layout
 
-block content
+block content 
     .container
-        h3 Survey Title
-        h3= survey.survey_title
-        h3 Survey Questions
-        h3 survey.
+        form(method="post" action="")
+            label Survey Title: #{survey.survey_title}
+            br
+            each question in survey.survey_questions 
+                label #{question.title}
+                if question.question_type=="short"
+                    textarea.form-control(type="text" name="answer" placeholder="your answer" required=true)
+                else if question.question_type=="agree"
+                    select.form-control.type(name="answer")
+                        option(value='agree', selected='') Agree
+                        option(value='disagree') Disagree
+            br
+            button.btn.btn-primary(type="submit") Submit
+

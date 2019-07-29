@@ -7,14 +7,11 @@ exports.findAllSurveys = async (req, res) => {
     const surveys = await Survey.find();
     res.render('users/surveys', {surveys, username: req.user.username});
     console.log(surveys);
+    console.log(req.user);
   };
- /* // get one survey (GET by it's ID)
-exports.getSurveyById = routePath => async (req, res, next) => {
-  const id = req.params.id;
-  const survey = await Survey.findById(id);
-  console.log(survey);
-  res.render(routePath, {survey}); 
-};  */
+ 
+// get one survey (GET by it's ID)
+
  exports.findSurveyById = async (req, res) => {
 
  const id = req.params.id;
@@ -48,5 +45,58 @@ exports.createNewSurvey = async (req, res) => {
   const survey = await new Survey(body).save();
   res.redirect(`/users/doSurvey/${survey._id}`);
 };
+
+
+//Author Yang and Tomoya
+// post the answers of a survey
+exports.postAnswer = async (req, res) => {
+  const id = req.params.id;
+  const body=req.body;
+  console.log(id);
+  console.log(body);
+  
+  const survey = await Survey.findById(id)
+
+  if(Array.isArray(req.body.answer)){
+
+  for (var i = 0; i < req.body.answer.length; i++) {
+    
+    survey.survey_questions[i].answer.push(body.answer[i])
+
+  }
+
+  }else{
+    survey.survey_questions[0].answer.push(body.answer)
+
+  }
+    await survey.save()
+
+  res.redirect(`/surveys`); 
+ 
+};
+
+// author Yang
+//view statistic function 
+exports.statistic=async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  //console.log(req.body);
+  const survey = await Survey.findById(id);
+  let agreeNumber=0;
+  let disagreeNumber=0;
+  for (const answer of survey.survey_questions[0].answer){
+    if (answer==="agree")
+    agreeNumber++
+    else
+    disagreeNumber++
+  }
+  console.log(agreeNumber);
+  console.log(disagreeNumber);
+  console.log(survey.survey_questions[0].answer);
+  const respondents = survey.survey_questions[0].answer.length
+  
+res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber });
+};
+
 
 
