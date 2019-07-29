@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 // List all surveys(GET)
-router.get('/users/surveys', surveys.findAllSurveys);
+router.get('/surveys', surveys.findAllSurveys);
 
 // List a specific surveys (GET)
 

@@ -5,7 +5,7 @@ const Survey=require('../../models/surveys');
 exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
-    res.render('users/surveys', {surveys, username: req.user.username});
+    res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
     console.log(surveys);
     console.log(req.user);
   };
@@ -43,7 +43,7 @@ exports.createNewSurvey = async (req, res) => {
   }
   body.username=req.params.username
   const survey = await new Survey(body).save();
-  res.redirect(`/users/doSurvey/${survey._id}`);
+  res.redirect(`/users/${req.user.username}/surveys`);
 };
 
 
