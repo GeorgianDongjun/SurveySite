@@ -4,10 +4,8 @@ var router = express.Router();
 
 
 
-// get  surveys for registered account
-router.get('/:username/surveys', function(req, res, next) {
-  res.render('users/surveys',  surveys.findAllSurveys)
-});
+// Get surveys for registered account
+router.get('/:username/surveys', surveys.findAllSurveys); 
 
 
 router.post('/:username/create', surveys.createNewSurvey);
@@ -22,11 +20,14 @@ router.get('/:username/create',  function(req, res, next) {
   res.redirect('/')
 });
 
+//get statistic page 
+router.get('/:id/statistic', surveys.statistic);
 
 
 
 
-router.get('/:username/surveys', surveys.findAllSurveys);
+
+//router.get('/:username/surveys', surveys.findAllSurveys);
 
 
 module.exports = router;

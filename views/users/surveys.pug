@@ -2,9 +2,11 @@ extends ../layout
 
 block content
     if isAuthenticated
-      a(href=`/users/${username}/create`) Create New Survey
+      a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
     h3.text-center All surveys
     ul
       each survey in surveys
         li 
         a(href=`/doSurvey/${survey._id}`)=survey.survey_title
+        if survey.username==username
+          a(href=`/users/${survey._id}/statistic` class="btn btn-primary") View Statistic

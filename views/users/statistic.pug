@@ -1,0 +1,17 @@
+extends ../layout
+
+block content 
+    .container
+        h3 Statistic of #{survey.survey_title} Survey
+        ul.list-group
+            li.list-group-item Number of participants : #{respondents}
+            each question in survey.survey_questions
+                li.list-group-item #{question.title}
+                    if question.question_type=="agree" 
+                        br              
+                        div Agree: #{agreeNumber}
+                        div Disgree: #{disagreeNumber}
+                    else if question.question_type=="short"
+                        each answer in question.answer
+                            div=answer+", "
+
