@@ -17,6 +17,6 @@ router.get("/:username/create", function(req, res, next) {
 });
 
 //get statistic page
-router.get("/:id/statistic", surveys.statistic);
+router.get("/:id/:username/statistic", surveys.statistic);
 
 module.exports = router;
