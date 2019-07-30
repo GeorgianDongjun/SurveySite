@@ -10,10 +10,10 @@ block content
                     if question.question_type=="agree" 
                         br              
                         div Agree: #{agreeNumber}
-                        div Disgree: #{disagreeNumber}
                         div.progress
-                            .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style='width: 100%')
-                            | #{agreeValue}
+                            .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style='width: #{agreeValue}%')
+                            | #{agreeValue}%
+                        div Disgree: #{disagreeNumber}                        
                     else if question.question_type=="short"
                         each answer in question.answer
                             div=answer+", "  
