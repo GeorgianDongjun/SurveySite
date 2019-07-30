@@ -102,7 +102,8 @@ exports.statistic=async (req, res) => {
   console.log(survey.survey_questions[0].answer);
   const respondents = survey.survey_questions[0].answer.length
   let agreeValue=agreeNumber/respondents*100
-res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue });
+  let disagreeValue=100-agreeValue
+res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue,disagreeValue});
 };
 
 

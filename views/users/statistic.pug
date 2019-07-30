@@ -11,10 +11,12 @@ block content
                         br              
                         div Agree: #{agreeNumber}
                         div.progress
-                            .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style='width: #{agreeValue}%')
+                            .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${agreeValue}%`)
                             | #{agreeValue}%
-                        div Disgree: #{disagreeNumber}                        
+                        div Disgree: #{disagreeNumber}
+                        div.progress
+                            .progress-bar(role='progressbar', aria-valuenow='#{disagreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${disagreeValue}%`)
+                            | #{disagreeValue}%                       
                     else if question.question_type=="short"
                         each answer in question.answer
                             div=answer+", "  
-        
