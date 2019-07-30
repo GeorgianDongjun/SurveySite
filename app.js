@@ -50,9 +50,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Use moment.js
-app.locals.moment = require('moment'); 
-
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
 

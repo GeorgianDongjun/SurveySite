@@ -24,14 +24,7 @@ exports.findAllSurveys = async (req, res) => {
 // Author Tomoya
 // Create a new Project
 exports.createNewSurvey = async (req, res) => {
-  
-  if(!req.user){
-    res.redirect('/')
-  }
-  if(req.user.username != req.params.username){
-    res.redirect('/')
-  }
-  if(req.params.username == req.user.username){
+
   const body = req.body;
   console.log(body)
 
@@ -51,7 +44,6 @@ exports.createNewSurvey = async (req, res) => {
   body.username=req.params.username
   const survey = await new Survey(body).save();
   res.redirect(`/users/${req.user.username}/surveys`);
-}
 };
 
 
@@ -80,39 +72,30 @@ exports.postAnswer = async (req, res) => {
     await survey.save()
 
   res.redirect(`/surveys`); 
+ 
 };
 
 // author Yang
 //view statistic function 
 exports.statistic=async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  //console.log(req.body);
+  const survey = await Survey.findById(id);
+  let agreeNumber=0;
+  let disagreeNumber=0;
+  for (const answer of survey.survey_questions[0].answer){
+    if (answer==="agree")
+    agreeNumber++
+    else
+    disagreeNumber++
+  }
+  console.log(agreeNumber);
+  console.log(disagreeNumber);
+  console.log(survey.survey_questions[0].answer);
+  const respondents = survey.survey_questions[0].answer.length
   
-  if(!req.user){
-    res.redirect('/')
-  }
-  if(req.user.username != req.params.username){
-    res.redirect('/')
-  }
-  if(req.params.username == req.user.username){
-    const id = req.params.id;
-    //console.log(req.body);
-    const survey = await Survey.findById(id);
-    let agreeNumber=0;
-    let disagreeNumber=0;
-    for (const answer of survey.survey_questions[0].answer){
-      if (answer==="agree")
-      agreeNumber++
-      else
-      disagreeNumber++
-    }
-    console.log(agreeNumber);
-    console.log(disagreeNumber);
-    console.log(survey.survey_questions[0].answer);
-    const respondents = survey.survey_questions[0].answer.length
-    let agreeValue=agreeNumber/respondents*100
-    let disagreeValue=100-agreeValue
-    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue,disagreeValue});
- }
-
+res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber });
 };
 
 
