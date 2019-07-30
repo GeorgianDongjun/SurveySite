@@ -3,23 +3,57 @@ extends ../layout
 block content 
     .container
         h3 Statistic of #{survey.survey_title} Survey
-        script(src='print.js') 
-        button(class="btn btn-primary" onclick=`printJS({ printable: 'list', type: 'html', header: 'Survey Name : ${survey.survey_title}' })`) Print Statistic         
-        ul.list-group#list
+        ul.list-group
             li.list-group-item Number of participants : #{respondents}
             each question in survey.survey_questions
-                if respondents==0
-                    li.list-group-item #{question.title}
-                else if respondents>0 
-                    li.list-group-item #{question.title}
-                        if question.question_type=="agree" 
-                            br              
-                            div Agree: #{agreeNumber}
-                            div.progress
-                                .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${agreeValue}%`) #{agreeValue}%
-                            div Disgree: #{disagreeNumber}
-                            div.progress
-                                .progress-bar(role='progressbar', aria-valuenow='#{disagreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${disagreeValue}%`) #{disagreeValue}%                      
-                        else if question.question_type=="short"
-                            each answer in question.answer
-                                div=answer+", "  
+                li.list-group-item #{question.title}
+                    if question.question_type=="agree" 
+                        br              
+                        div Agree: #{agreeNumber}
+                        div Disgree: #{disagreeNumber}
+                        canvas#myChart
+                    else if question.question_type=="short"
+                        each answer in question.answer
+                            div=answer+", "  
+    
+    script(type='text/javascript').
+        
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }]
+            }
+        }
+        }); 
+
+        

@@ -10,4 +10,5 @@ block content
         div.card-body
           a(href=`/doSurvey/${survey._id}` class="list-group-item")=survey.survey_title
           if survey.username==username        
-            a(href=`/users/${survey._id}/${survey.username}/statistic` class="btn btn-primary") View Statistic
+            a(href=`/users/${survey._id}/statistic` class="btn btn-primary") View Statistic
+
