@@ -1,10 +1,11 @@
 footer#myFooter
-  .container
-    p Register for free
-      a(href='/register')
-        button.btn.btn-primary(type='button') SING UP!
+  if !isAuthenticated
+    .container
+      p Register for free
+        a(href='/register')
+          button.btn.btn-primary(type='button') SING UP!    
   .footer-copyright
-    | Copyright &copy; TrueServey 
-    script.
-      document.write(new Date().getFullYear());
-    |  All rights reserved  
+      | Copyright &copy; TrueServey 
+      script.
+        document.write(new Date().getFullYear());
+      |  All rights reserved    
