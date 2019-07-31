@@ -1,23 +1,23 @@
 nav#myHeader.navbar.navbar-expand-lg.navbar-light
   a.navbar-brand(href='/')
-    img(src='/images/LogoBlack.png' width="250px" height="50px")
+    img(src='/images/LogoWhite.png' width="250px" height="50px")
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item
-        a.survey.nav-link.black-font(href='/surveys')
+        a.survey.nav-link(href='/surveys')
           | Survey
     ul.navbar-nav
       if isAuthenticated
         li.nav-item
-          a.nav-link.black-font(href='/profile') Profile
+          a.nav-link(href='/profile') Profile
         li.nav-item
-          a.nav-link.black-font(href='/logout') Logout
+          a.nav-link(href='/logout') Logout
       else
         li.nav-item
-          a.register.nav-link.black-font(href='/register') Register
+          a.register.nav-link(href='/register') Register
         li.nav-item
-          a.nav-link.black-font(href='/login') Login
+          a.nav-link(href='/login') Login
 
 
