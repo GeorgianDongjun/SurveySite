@@ -4,8 +4,9 @@ const findorcreate = require('mongoose-findorcreate');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
-  username: String,
-  password: String
+  username: {type: String, unique: true},
+  password: String,
+  email: String
 });
 
 userSchema.plugin(findorcreate);

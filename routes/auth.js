@@ -7,6 +7,7 @@ const User = require('../models/user');
 router.get('/login', (req, res) =>
   res.render('login', { buttonText: 'Login' })
 );
+
 // Handle Login Form Submission
 router.post(
     '/login',
@@ -20,26 +21,24 @@ router.post(
 );
 // Render Register Form
 router.get('/register', (req, res) =>
-  res.render('login', { buttonText: 'Register' })
+  res.render('register', { buttonText: 'Register' })
 );
 
-// Handle Register Form Submission
+//Handle Register Form Submission
 router.post('/register', (req, res) => {
-  User.register(
-    new User({ username: req.body.username }),
-    req.body.password,
-    function(err, account) {
+  var newUser = new User({username: req.body.username});
+  newUser.email = req.body.email;
+  User.register(newUser, req.body.password, function(err, account) {
       if (err) {
         console.log(err);
         return res.render('register', { account: account });
       }
-
       passport.authenticate('local')(req, res, function() {
         res.redirect(`/users/${req.user.username}/surveys`);
       });
-    }
-  );
+  });
 });
+
 // Log out
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
