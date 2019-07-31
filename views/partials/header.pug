@@ -11,6 +11,8 @@ nav#myHeader.navbar.navbar-expand-lg.navbar-light
     ul.navbar-nav
       if isAuthenticated
         li.nav-item
+          a.nav-link(href='/profile') Profile
+        li.nav-item
           a.nav-link(href='/logout') Logout
       else
         li.nav-item

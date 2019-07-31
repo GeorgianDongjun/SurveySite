@@ -1,26 +1,26 @@
 extends layout
 
 block content
-  .container
-    h1 Register
-
-    form(method="POST")
-      .form-group
-        label Username
-        input.form-control(name="username" type="text")
-      .form-group
-        label Password
-        input.form-control(name="password" type="password")
-      .form-group
-        label Firstname
-        input.form-control(name="firstname" type="text")
-      .form-group
-        label Lastname
-        input.form-control(name="lastname" type="text")
-      .form-group
-        label Email
-        input.form-control(name="email" type="email")
-      button.btn.btn-primary(type="submit") Login
-      #message
-        if message
-          h1.text-center.error-message #{message}
+  .signup-box
+    .left-box
+      h1 Sign Up
+      form(method="POST")
+        input(name="username" type="text" placeholder="User Name")
+        input(name="password" type="Password" placeholder="Password")      
+        input(name="firstname" type="text" placeholder="First Name")      
+        input(name="lastname" type="text" placeholder="Last Name")      
+        input(name="email" type="email" placeholder="Email")
+        button(type="submit") Sign up
+    .right-box
+      span.signinwith
+        | Sign in with 
+        br
+        |  Social Network
+      button.facebook
+        | Log in with Facebook  
+      button.google
+        | Log in with Google+
+      button.github
+        | Log in with Github  
+    .or
+      | OR
