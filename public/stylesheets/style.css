@@ -1,6 +1,6 @@
 /*Header*/
 #myHeader{
-  background-color: transparent;
+  background-color: Black;
 }
 #myHeader .nav-item .nav-link{
   color: whitesmoke;
@@ -38,6 +38,10 @@
   margin-bottom: 30px;
 }
 
+#myFooter .container a {
+  text-decoration: none;
+}
+
 #myFooter .btn {
   color: white;
   background-color: #d84b6b;
@@ -56,8 +60,58 @@
   }
 }
 
+/*index.js style*/
+.header {
+  height: 100vh;
+  min-height: 600px;
+  text-align: center;
+}
 
-/*Index_background*/
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.vertical-center {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 70px;
+  color: whitesmoke;
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: small-caps;
+}
+
+.header .container p {
+  padding-top: 20px;
+}
+
+.header .container a {
+  text-decoration: none;
+}
+.header .btn {
+  color: white;
+  background-color: orange;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  line-height: 25px;
+}
+
+.header .btn:hover {
+  background-color: blue;
+}
+/*index.js_background*/
 .fullscreen-bg {
   position: fixed;
   top: 0;
@@ -103,3 +157,4 @@
     left: -100%;
   }
 }
+

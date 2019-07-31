@@ -1,6 +1,15 @@
-extends layout
+extends HomeLayout
 
 block content
-  .fullscreen-bg
-    video.fullscreen-bg__video(loop='', muted='', autoplay='')
-      source(src='/videos/background.mp4', type='video/mp4')
+  section.header
+    .fullscreen-bg
+      video.fullscreen-bg__video(loop='', muted='', autoplay='')
+        source(src='/videos/background.mp4', type='video/mp4')
+    .helper
+    .vertical-center
+      h1 Welcome to True Survey.
+      h3 Be an influencer. Share your opinion to help people.
+      .container
+        p Register for free
+          a(href='/register')
+            button.btn.btn-primary(type='button') SING UP!
