@@ -13,7 +13,8 @@ const surveySchema = new Schema({
     required: true
   },
   survey_questions: [questionSchema],
-  username: String
+  username: String,
+  deadline: String
 });
   const Survey=mongoose.model('Survey',surveySchema);
   module.exports=Survey;
