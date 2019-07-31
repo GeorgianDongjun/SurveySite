@@ -1,13 +1,14 @@
 extends ../layout
 
 block content
-  .container
-    if isAuthenticated
-      a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
-    h3.text-center All surveys
-    div.card
-      each survey in surveys
-        div.card-body
-          a(href=`/doSurvey/${survey._id}` class="list-group-item")=survey.survey_title
-          if survey.username==username        
-            a(href=`/users/${survey._id}/${survey.username}/statistic` class="btn btn-primary") View Statistic
+  .bodyContainer
+    .container
+      if isAuthenticated
+        a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
+      h3.text-center All surveys
+      div.card
+        each survey in surveys
+          div.card-body
+            a(href=`/doSurvey/${survey._id}` class="list-group-item")=survey.survey_title
+            if survey.username==username        
+              a(href=`/users/${survey._id}/${survey.username}/statistic` class="btn btn-primary") View Statistic

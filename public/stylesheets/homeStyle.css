@@ -23,7 +23,10 @@
   #myFooter {
     background-color: #333333;
     color: white;
-    padding-top: 30px;
+    padding-top: 30px;  
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
   
   #myFooter .footer-copyright {
