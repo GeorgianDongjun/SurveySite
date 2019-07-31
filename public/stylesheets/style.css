@@ -24,7 +24,6 @@
 #myFooter {
   background-color: #333333;
   color: white;
-  padding-top: 30px;
 }
 
 #myFooter .footer-copyright {
@@ -37,6 +36,7 @@
 #myFooter .container {
   text-align: center;
   margin-bottom: 30px;
+  padding-top: 30px;
 }
 
 #myFooter .container a {
