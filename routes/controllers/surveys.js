@@ -25,6 +25,13 @@ exports.findAllSurveys = async (req, res) => {
 // Create a new Project
 exports.createNewSurvey = async (req, res) => {
 
+  if(!req.user){
+    res.redirect('/')
+  }
+  if(req.user.username != req.params.username){
+    res.redirect('/')
+  }
+  if(req.params.username == req.user.username){
   const body = req.body;
   console.log(body)
 
@@ -44,6 +51,7 @@ exports.createNewSurvey = async (req, res) => {
   body.username=req.params.username
   const survey = await new Survey(body).save();
   res.redirect(`/users/${req.user.username}/surveys`);
+}
 };
 
 
