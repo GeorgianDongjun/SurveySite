@@ -17,8 +17,8 @@ router.get('/:username/create', function(req, res, next) {
   res.render('users/create')
 });
 
-//get statistic page 
-router.get('/:id/statistic', surveys.statistic);
+//get statistic page
+router.get("/:id/:username/statistic", surveys.statistic);
 
 
 
