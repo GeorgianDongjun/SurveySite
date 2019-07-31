@@ -27,6 +27,8 @@ router.get('/register', (req, res) =>
 //Handle Register Form Submission
 router.post('/register', (req, res) => {
   var newUser = new User({username: req.body.username});
+  newUser.firstname = req.body.firstname;
+  newUser.lastname = req.body.lastname;
   newUser.email = req.body.email;
   User.register(newUser, req.body.password, function(err, account) {
       if (err) {
