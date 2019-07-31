@@ -14,6 +14,10 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 var db = mongoose.connection;
 db.on('error', err => console.error(err));
 db.once('open', () => console.log('Connection to mongoose successful'));
@@ -50,7 +54,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//use moment
+// use moment.js
 app.locals.moment = require('moment');
 
 // use static authenticate method of model in LocalStrategy
