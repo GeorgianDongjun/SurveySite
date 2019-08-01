@@ -3,7 +3,9 @@ extends ../layout
 block content 
     .container
         h3 Statistic of #{survey.survey_title} Survey
-        ul.list-group
+        script(src='print.js') 
+        button(class="btn btn-primary" onclick=`printJS({ printable: 'list', type: 'html', header: 'Survey Name : ${survey.survey_title}' })`) Print Statistic   
+        ul.list-group#list
             li.list-group-item Number of participants : #{respondents}
             each question in survey.survey_questions
                 if respondents==0

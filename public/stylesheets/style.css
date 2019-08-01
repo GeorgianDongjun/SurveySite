@@ -314,4 +314,8 @@ body {
 .right-box .github:hover {
   background-color: #232323;
 }
+.btn{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 

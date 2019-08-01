@@ -14,6 +14,7 @@ router.post('/:username/create', surveys.createNewSurvey);
 
 /* GET new survey page */
 router.get('/:username/create', function(req, res, next) {
+  
   if(!req.user){
     res.redirect('/')
   }
@@ -26,7 +27,7 @@ router.get('/:username/create', function(req, res, next) {
 });
 
 //get statistic page 
-router.get('/:id/statistic', surveys.statistic);
+router.get('/:id/:username/statistic', surveys.statistic);
 
 
 
