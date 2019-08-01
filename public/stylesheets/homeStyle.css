@@ -15,7 +15,8 @@
   padding-left: 20px;
 }
 
-#myHeader .register {
+#myHeader .register,
+#myHeader .profile {
   padding-right: 20px;
 }
 

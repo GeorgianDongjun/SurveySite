@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     .survey-container 
-        .container
+        #survey-table.container
             if moment(survey.deadline).isBefore(moment().format('YYYY-MM-DD'))
                 h2 This survey expires
             else

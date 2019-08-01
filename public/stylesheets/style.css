@@ -1,5 +1,6 @@
 body {
   background: #f0f0f0 !important;
+  font-family: sans-serif !important;
 }
 /*Header*/
 #myHeader{
@@ -22,7 +23,8 @@ body {
   padding-left: 20px;
 }
 
-#myHeader .register {
+#myHeader .register,
+#myHeader .profile {
   padding-right: 20px;
 }
 
@@ -62,6 +64,10 @@ body {
   margin: 0 auto;
   margin-top: 10px;
   line-height: 25px;
+}
+
+#myFooter .btn:hover {
+  background-color: #e32d57;
 }
 
 @media screen and (max-width: 767px) {
@@ -322,5 +328,15 @@ body {
 
 /*Survey*/
 .survey-container {
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 160px;
+}
+
+#survey-table {
+  position: relative;
+  margin: 1% auto;
+  width: 1000px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  padding: 20px 10px;
 }
