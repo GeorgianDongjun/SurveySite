@@ -1,25 +1,26 @@
 extends ../layout
 
-block content 
-    .container
-        h3 Statistic of #{survey.survey_title} Survey
-        script(src='print.js') 
-        button(class="btn btn-primary" onclick=`printJS({ printable: 'list', type: 'html', header: 'Survey Name : ${survey.survey_title}' })`) Print Statistic   
-        ul.list-group#list
-            li.list-group-item Number of participants : #{respondents}
-            each question in survey.survey_questions
-                if respondents==0
-                    li.list-group-item #{question.title}
-                else if respondents>0 
-                    li.list-group-item #{question.title}
-                        if question.question_type=="agree" 
-                            br
-                            div Percentage              
-                            div.progress
-                                .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${agreeValue}%`) #{agreeValue}%
-                            div Agree: #{agreeNumber}
-                            div Disgree: #{disagreeNumber}
-                        else if question.question_type=="short"
-                            each answer in question.answer
-                                div=answer+", "   
+block content
+    .survey-container 
+        .container
+            h3 Statistic of #{survey.survey_title} Survey
+            script(src='print.js') 
+            button(class="btn btn-primary" onclick=`printJS({ printable: 'list', type: 'html', header: 'Survey Name : ${survey.survey_title}' })`) Print Statistic   
+            ul.list-group#list
+                li.list-group-item Number of participants : #{respondents}
+                each question in survey.survey_questions
+                    if respondents==0
+                        li.list-group-item #{question.title}
+                    else if respondents>0 
+                        li.list-group-item #{question.title}
+                            if question.question_type=="agree" 
+                                br
+                                div Percentage              
+                                div.progress
+                                    .progress-bar(role='progressbar', aria-valuenow='#{agreeNumber}', aria-valuemin='0', aria-valuemax='#{respondents}', style=`width: ${agreeValue}%`) #{agreeValue}%
+                                div Agree: #{agreeNumber}
+                                div Disgree: #{disagreeNumber}
+                            else if question.question_type=="short"
+                                each answer in question.answer
+                                    div=answer+", "   
         
