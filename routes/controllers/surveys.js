@@ -6,8 +6,8 @@ exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
     res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
-    console.log(surveys);
-    console.log(req.user);
+    //console.log(surveys);
+    //console.log(req.user);
   };
  
 // get one survey (GET by it's ID)
@@ -58,7 +58,10 @@ exports.createNewSurvey = async (req, res) => {
 //Author Yang and Tomoya
 // post the answers of a survey
 exports.postAnswer = async (req, res) => {
-  
+  const id = req.params.id;
+  const body=req.body;
+  console.log(id);
+  console.log(body);
   
   const survey = await Survey.findById(id)
 
@@ -106,8 +109,7 @@ exports.statistic=async (req, res) => {
     //console.log(survey.survey_questions[0].answer);
     const respondents = survey.survey_questions[0].answer.length
     let agreeValue=agreeNumber/respondents*100
-    let disagreeValue=100-agreeValue
-    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue,disagreeValue});
+    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue});
  }
 
 };
