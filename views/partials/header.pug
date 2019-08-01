@@ -5,9 +5,13 @@ nav#myHeader.navbar.navbar-expand-lg.navbar-light
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item
-        a.survey.nav-link.black-font(href='/surveys')
-          | Survey
+      if isAuthenticated
+        li.nav-item  
+          a.survey.nav-link.black-font(href=`/users/${username}/surveys`)
+            | Survey
+      else
+        li.nav-item 
+          a.survey.nav-link.black-font(href=`/surveys`) Survey 
     ul.navbar-nav
       if isAuthenticated
         li.nav-item

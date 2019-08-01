@@ -6,8 +6,8 @@ exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
     res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
-    console.log(surveys);
-    console.log(req.user);
+    //console.log(surveys);
+    //console.log(req.user);
   };
  
 // get one survey (GET by it's ID)
@@ -16,7 +16,7 @@ exports.findAllSurveys = async (req, res) => {
 
  const id = req.params.id;
  const survey = await Survey.findById(id);
- console.log(survey);
+ //console.log(survey);
  res.render('users/doSurvey', { survey });
 };
 
@@ -86,24 +86,32 @@ exports.postAnswer = async (req, res) => {
 // author Yang
 //view statistic function 
 exports.statistic=async (req, res) => {
-  const id = req.params.id;
-  console.log(id);
-  //console.log(req.body);
-  const survey = await Survey.findById(id);
-  let agreeNumber=0;
-  let disagreeNumber=0;
-  for (const answer of survey.survey_questions[0].answer){
-    if (answer==="agree")
-    agreeNumber++
-    else
-    disagreeNumber++
-  }
-  console.log(agreeNumber);
-  console.log(disagreeNumber);
-  console.log(survey.survey_questions[0].answer);
-  const respondents = survey.survey_questions[0].answer.length
   
-res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber });
+  if(!req.user){
+    res.redirect('/')
+  }
+  else if(req.user.username != req.params.username){
+    res.redirect('/')
+  }
+  else if(req.params.username == req.user.username){
+    const id = req.params.id;
+    const survey = await Survey.findById(id);
+    let agreeNumber=0;
+    let disagreeNumber=0;
+    for (const answer of survey.survey_questions[0].answer){
+      if (answer==="agree")
+      agreeNumber++
+      else
+      disagreeNumber++
+    }
+    //console.log(agreeNumber);
+    //console.log(disagreeNumber);
+    //console.log(survey.survey_questions[0].answer);
+    const respondents = survey.survey_questions[0].answer.length
+    let agreeValue=agreeNumber/respondents*100
+    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue});
+ }
+
 };
 
 
