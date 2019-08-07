@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 // Render Login Form
 router.get('/login', (req, res) =>
-  res.render('login', { buttonText: 'Login' })
+  res.render('login', { buttonText: 'Login', title: 'True Survey | Login' })
 );
 
 // Handle Login Form Submission
@@ -25,7 +25,7 @@ router.post(
 );
 // Render Register Form
 router.get('/register', (req, res) =>
-  res.render('register', { buttonText: 'Register' })
+  res.render('register', { buttonText: 'Register', title: 'True Survey | Sign up' })
 );
 
 //Handle Register Form Submission
@@ -58,7 +58,7 @@ router.get('/profile', (req, res) => {
     res.redirect('/')
   }
   res.render('profile', {
-    user: req.user
+    user: req.user, title: 'True Survey | Profile'
   });
 });
 
@@ -68,7 +68,7 @@ router.get('/:id/editProfile', (req, res) => {
     res.redirect('/')
   }
   res.render('editProfile', {
-    user: req.user
+    user: req.user, title: 'True Survey | Edit Profile'
   });
 });
   
