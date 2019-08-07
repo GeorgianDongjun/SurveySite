@@ -1,3 +1,7 @@
+//- File name: app.js
+//- Author's name: Dongjun Yu, Tomoya Kuroda
+//- File description: Configure mongoose, passport.js and routing
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');

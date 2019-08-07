@@ -1,3 +1,7 @@
+//- File name: users.pug
+//- Author's name: Tomoya Kuroda, Yang su
+//- File description: Routing for logged in user
+
 var express = require('express');
 var surveys = require('./controllers/surveys');
 var router = express.Router();
