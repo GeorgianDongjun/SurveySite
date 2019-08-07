@@ -5,7 +5,7 @@ const Survey=require('../../models/surveys');
 exports.findAllSurveys = async (req, res) => {
 
     const surveys = await Survey.find();
-    res.render('users/surveys', {surveys, username: req.user && req.user.username || ""});
+    res.render('users/surveys', {surveys, username: req.user && req.user.username || "",title: 'All Surveys'});
     //console.log(surveys);
     //console.log(req.user);
   };
@@ -17,7 +17,7 @@ exports.findAllSurveys = async (req, res) => {
  const id = req.params.id;
  const survey = await Survey.findById(id);
  //console.log(survey);
- res.render('users/doSurvey', { survey });
+ res.render('users/doSurvey', { survey,title: `${survey.survey_title}` });
 };
 
 
@@ -109,7 +109,7 @@ exports.statistic=async (req, res) => {
     //console.log(survey.survey_questions[0].answer);
     const respondents = survey.survey_questions[0].answer.length
     let agreeValue=agreeNumber/respondents*100
-    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue});
+    res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue,title: 'Statistic'});
  }
 
 };
