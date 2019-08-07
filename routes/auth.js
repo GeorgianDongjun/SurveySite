@@ -23,6 +23,28 @@ router.post(
    }
     
 );
+
+//google login
+router.get(`/auth/google`,
+  passport.authenticate('google', {
+    scope: ['profile']
+  })
+);
+
+router.get(`/auth/google/callback`,
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => res.redirect('/profile')
+);
+
+//github login
+router.get(`/auth/github`, passport.authenticate('github'));
+
+router.get(`/auth/github/callback`,
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res) => res.redirect('/profile')
+);
+
+
 // Render Register Form
 router.get('/register', (req, res) =>
   res.render('register', { buttonText: 'Register', title: 'True Survey | Sign up' })
@@ -86,14 +108,14 @@ router.post('/:id/editProfile', function(req, res) {
 
     if (!firstname || !lastname || !email) {
       req.flash('error', 'One or more fields are empty');
-      return res.redirect('/edit'); // modified
+      return res.redirect('/edit');
     }
     
     user.firstname = firstname;
     user.lastname = lastname;
     user.email = email;
 
-    // don't forget to save!
+    
     user.save(function (err) {
 
         console.log(err);

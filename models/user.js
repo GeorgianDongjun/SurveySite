@@ -14,7 +14,9 @@ const userSchema = new Schema({
   password: String,
   firstname: String,
   lastname: String,
-  email: String
+  email: String,
+  googleId: String,
+  githubId: String
 });
 
 userSchema.plugin(findorcreate);
