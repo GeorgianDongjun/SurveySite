@@ -1,5 +1,6 @@
-
-// author Yang Su
+//- File name: surveys.js
+//- Author's name: Tomoya Kuroda, Yang su
+//- File description: Controller for survey
 const Survey=require('../../models/surveys');
 // Find all surveys
 exports.findAllSurveys = async (req, res) => {
@@ -22,7 +23,7 @@ exports.findAllSurveys = async (req, res) => {
 
 
 // Author Tomoya
-// Create a new Project
+// Create a new Survey
 exports.createNewSurvey = async (req, res) => {
 
   if(!req.user){
@@ -33,7 +34,6 @@ exports.createNewSurvey = async (req, res) => {
   }
   if(req.params.username == req.user.username){
   const body = req.body;
-  console.log(body)
 
   // if the survey has multiple questions, save them as array
   if(Array.isArray(req.body.question_title)){
@@ -50,6 +50,24 @@ exports.createNewSurvey = async (req, res) => {
   }
   body.username=req.params.username
   const survey = await new Survey(body).save();
+  res.redirect(`/users/${req.user.username}/surveys`);
+}
+};
+
+// Author Tomoya Kuroda
+// Delete a Survey
+exports.deleteSurvey = async (req, res) => {
+
+  if(!req.user){
+    res.redirect('/')
+  }
+  if(req.user.username != req.params.username){
+    res.redirect('/')
+  }
+  if(req.params.username == req.user.username){
+  const survey_id = req.params.id;
+  const survey = await Survey.findById(survey_id)
+  await survey.delete()
   res.redirect(`/users/${req.user.username}/surveys`);
 }
 };
@@ -104,9 +122,7 @@ exports.statistic=async (req, res) => {
       else
       disagreeNumber++
     }
-    //console.log(agreeNumber);
-    //console.log(disagreeNumber);
-    //console.log(survey.survey_questions[0].answer);
+
     const respondents = survey.survey_questions[0].answer.length
     let agreeValue=agreeNumber/respondents*100
     res.render('users/statistic', { survey,respondents,disagreeNumber,agreeNumber,agreeValue,title: 'Statistic'});
