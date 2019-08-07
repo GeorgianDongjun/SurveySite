@@ -1,3 +1,9 @@
+/* 
+File name: style.css
+Author's name: Dongjun Yu
+File description: css file for our website
+*/
+
 body {
   background: #f0f0f0 !important;
   font-family: sans-serif !important;
@@ -339,4 +345,107 @@ body {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   padding: 20px 10px;
+}
+
+
+/*Profile*/
+.profile-box {
+  position: relative;
+  margin: 5% auto;
+  height: 400px;
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.box-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 300px;
+  height: 400px;
+}
+
+.profile-box h1 {
+  margin: 0 0 20px 0;
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.profile-box h2 {
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.profile-box p {
+  font-weight: 300;
+  font-size: 15px;
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #aaa;
+  font-family: sans-serif;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+
+.profile-box a:link, 
+.profile-box a:visited {
+  background-color: #f44336;
+  color: #fff;
+  padding: 5px 25px;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.profile-box input {
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #aaa;
+  font-family: sans-serif;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.profile-box a:hover {
+  background-color: #ff5722;
+  transition: 0.2s ease;
+}
+
+.profile-box button[type="submit"]{
+  margin-bottom: 28px;
+  width: 120px;
+  height: 32px;
+  background: #f44336;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.profile-box button[type="submit"]:hover, button[type="submit"]:focus {
+  background: #ff5722;
+  transition: 0.2s ease;
 }

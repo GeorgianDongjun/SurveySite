@@ -1,0 +1,17 @@
+//- File name: editProfile.pug
+//- Author's name: Dongjun Yu
+//- File description: View for editing user's profile
+
+extends layout
+
+block content
+  .profile-box
+    .box-container
+      h1 Edit Profile
+
+      form(method="POST")
+          input(name="firstname" value=user.firstname placeholder="Firstname")
+          input(name="lastname" value=user.lastname placeholder="Lastname")
+          input(name="email" value=user.email type="Email")
+
+          button(type="submit") Update Profile

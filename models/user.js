@@ -1,3 +1,9 @@
+/* 
+File name: user.js
+Author's name: Dongjun Yu
+File description: User schema for mongodb
+*/
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const findorcreate = require('mongoose-findorcreate');

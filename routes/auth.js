@@ -1,3 +1,7 @@
+//- File name: auth.js
+//- Author's name: Dongjun Yu
+//- File description: route file for login, register, log out, and profile
+
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
@@ -47,4 +51,56 @@ router.get('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
+// Profile
+router.get('/profile', (req, res) => {  
+  if(!req.user){
+    res.redirect('/')
+  }
+  res.render('profile', {
+    user: req.user
+  });
+});
+
+// Edit Profile
+router.get('/:id/editProfile', (req, res) => {
+  if(!req.user){
+    res.redirect('/')
+  }
+  res.render('editProfile', {
+    user: req.user
+  });
+});
+  
+// Handle Profile Edit form
+router.post('/:id/editProfile', function(req, res) {
+  User.findById(req.user.id, function (err, user) {
+    if(!user) {
+      req.flash('error', 'No account found');
+      return res.redirect('/profile');
+    }
+
+    var firstname = req.body.firstname.trim();
+    var lastname = req.body.lastname.trim();
+    var email = req.body.email.trim();
+
+    if (!firstname || !lastname || !email) {
+      req.flash('error', 'One or more fields are empty');
+      return res.redirect('/edit'); // modified
+    }
+    
+    user.firstname = firstname;
+    user.lastname = lastname;
+    user.email = email;
+
+    // don't forget to save!
+    user.save(function (err) {
+
+        console.log(err);
+
+        res.redirect('/profile');
+    });
+  });
+});
+
 module.exports = router;

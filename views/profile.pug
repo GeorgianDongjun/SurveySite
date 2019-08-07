@@ -1,17 +1,17 @@
+//- File name: profile.pug
+//- Author's name: Dongjun Yu
+//- File description: View for a profile
+
 extends layout
 
 block content
-  .container
-    h1 Profile
-
-    form(method="POST")
-      .form-group
-        label Firstname
-        input.form-control(name="firstname" type="text")
-      .form-group
-        label Lastname
-        input.form-control(name="lastname" type="text")
-      .form-group
-        label Email
-        input.form-control(name="email" type="email")
-      button.btn.btn-primary(type="submit") Sign up
+  .profile-box
+    .box-container
+      h1 Profile
+      h2 Firstname
+      p= user.firstname
+      h2 Lastname
+      p= user.lastname
+      h2 Email
+      p= user.email
+      a(href=`/${user._id}/editProfile`) Update Profile
