@@ -22,7 +22,7 @@ router.get('/:username/create', function(req, res, next) {
     res.redirect('/')
   }
   if(req.params.username == req.user.username){
-  res.render('users/create')
+  res.render('users/create',  { title: 'Create a Survey' })
   }
 });
 

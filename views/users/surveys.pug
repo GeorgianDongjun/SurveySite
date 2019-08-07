@@ -6,7 +6,8 @@ block content
       h3.text-center All surveys
       
       if isAuthenticated
-        a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
+        div.text-right
+          a(href=`/users/${username}/create` class="btn btn-info") Create New Survey
       
       div#survey-card.card
         each survey in surveys
