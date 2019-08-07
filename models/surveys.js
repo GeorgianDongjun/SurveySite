@@ -1,3 +1,8 @@
+/* 
+File name: survey.js
+Author's name: Tomoya Kuroda
+File description: Survey schema for mongodb
+*/
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const questionSchema = new Schema({
