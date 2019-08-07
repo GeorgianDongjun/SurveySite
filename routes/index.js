@@ -5,7 +5,7 @@ const Survey=require('../models/surveys');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', { title: 'True Survey' });
 });
 
 // List all surveys(GET)
